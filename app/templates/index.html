@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>League Stats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <main>
+      <h1>League Stats</h1>
+      <p>Tracked League of Legends accounts</p>
+      <ul>
+        {% for account in accounts %}
+          <li>{{ account.game_name }}#{{ account.tag_line }}</li>
+        {% else %}
+          <li>No accounts configured yet.</li>
+        {% endfor %}
+      </ul>
+    </main>
+  </body>
+</html>

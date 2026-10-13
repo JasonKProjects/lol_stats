@@ -18,7 +18,13 @@ Copy-Item .env.example .env
 
 Set `SECRET_KEY` and `RIOT_API_KEY` in `.env`. Keep `.env` private; it is excluded from Git.
 
-Tracked Riot IDs are listed in `TRACKED_ACCOUNTS` in `app/config.py`; add one entry per account using its game name and tagline.
+Tracked Riot IDs are stored in the local, Git-ignored `.env` file as a JSON array in `TRACKED_ACCOUNTS`. For example:
+
+```dotenv
+TRACKED_ACCOUNTS='[{"game_name":"PlayerName","tag_line":"NA1"}]'
+```
+
+Add one object per account. Riot IDs stay local and are not committed; `.env.example` contains an empty list as a template.
 
 For development tools, install Ruff:
 

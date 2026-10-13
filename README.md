@@ -17,6 +17,8 @@ Copy-Item .env.example .env
 ```
 
 Set `SECRET_KEY` and `RIOT_API_KEY` in `.env`. Keep `.env` private; it is excluded from Git.
+Set `RIOT_REGION` to the account's Riot routing region (`americas`, `europe`,
+`asia`, or `sea`).
 
 Tracked Riot IDs are stored in the local, Git-ignored `.env` file as a JSON array in `TRACKED_ACCOUNTS`. For example:
 
@@ -25,6 +27,19 @@ TRACKED_ACCOUNTS='[{"game_name":"PlayerName","tag_line":"NA1"}]'
 ```
 
 Add one object per account. Riot IDs stay local and are not committed; `.env.example` contains an empty list as a template.
+
+## Riot account lookup
+
+The account lookup endpoint uses Account-V1 to resolve a Riot ID to its PUUID:
+
+```text
+GET /api/accounts/<game_name>/<tag_line>
+```
+
+For example, with the development server running, visit
+`http://127.0.0.1:5000/api/accounts/PlayerName/NA1`. The JSON response includes
+the Riot ID, PUUID, and configured routing region. A missing API key, unknown
+account, invalid region, or Riot API error is returned as a JSON error response.
 
 For development tools, install Ruff:
 
